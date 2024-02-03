@@ -623,9 +623,7 @@ impl<C: Comments> ReactServerComponents<C> {
     }
 
     fn is_from_node_modules(&self, filepath: &str) -> bool {
-        Regex::new(r"[\\/]node_modules[\\/]")
-            .unwrap()
-            .is_match(filepath)
+        Regex::new(r"node_modules[\\/]").unwrap().is_match(filepath)
     }
 }
 

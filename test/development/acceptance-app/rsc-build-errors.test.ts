@@ -338,7 +338,7 @@ describe('Error overlay - RSC build errors', () => {
     await cleanup()
   })
 
-  it.only('should throw an error when error file is a server component', async () => {
+  it('should throw an error when error file is a server component', async () => {
     const { session, cleanup } = await sandbox(
       next,
       undefined,

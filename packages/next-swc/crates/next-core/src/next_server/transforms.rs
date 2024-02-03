@@ -76,11 +76,6 @@ pub async fn get_next_server_transforms_rules(
                 mdx_rs,
             ));
 
-            rules.push(
-                get_next_react_server_components_transform_rule(next_config, true, Some(app_dir))
-                    .await?,
-            );
-
             if let Some(client_transition) = client_transition {
                 rules.push(get_next_css_client_reference_transforms_rule(
                     client_transition,

@@ -57,6 +57,7 @@ use crate::{
         },
         transforms::{
             emotion::get_emotion_transform_rule, get_ecma_transform_rule,
+            next_react_server_components::get_next_react_server_components_transform_rule,
             relay::get_relay_transform_rule,
             styled_components::get_styled_components_transform_rule,
             styled_jsx::get_styled_jsx_transform_rule,
@@ -496,6 +497,7 @@ pub async fn get_server_module_options_context(
             }
         }
         ServerContextType::AppRSC {
+            app_dir,
             ecmascript_client_reference_transition_name,
             ..
         } => {
@@ -516,6 +518,11 @@ pub async fn get_server_module_options_context(
                     true,
                 ));
             }
+
+            custom_source_transform_rules.push(
+                get_next_react_server_components_transform_rule(next_config, true, Some(app_dir))
+                    .await?,
+            );
 
             base_next_server_rules.extend(custom_source_transform_rules.clone());
             base_next_server_rules.extend(source_transform_rules);
